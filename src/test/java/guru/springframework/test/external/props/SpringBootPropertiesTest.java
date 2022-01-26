@@ -2,11 +2,14 @@ package guru.springframework.test.external.props;
 
 import guru.springframework.SpringCoreDevOpsApplication;
 import guru.springframework.test.jms.FakeJmsBroker;
+import guru.test.config.external.props.ExternalPropsEnvironment;
+import guru.test.config.external.props.ExternalPropsMultiFileS4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -19,6 +22,7 @@ import static org.junit.Assert.assertEquals;
 @SpringApplicationConfiguration(SpringCoreDevOpsApplication.class)
 @WebIntegrationTest
 @TestPropertySource("/application.properties")
+//@ContextConfiguration(classes = ExternalPropsMultiFileS4.class)
 public class SpringBootPropertiesTest {
     @Autowired
     FakeJmsBroker fakeJmsBroker;
@@ -28,7 +32,8 @@ public class SpringBootPropertiesTest {
         assertEquals("10.10.10.123", fakeJmsBroker.getUrl());
         assertEquals(3330, fakeJmsBroker.getPort().intValue());
         assertEquals("Ron", fakeJmsBroker.getUser());
-        assertEquals("Burgundy", fakeJmsBroker.getPassword());
+        //assertEquals("&%$)(*&#^!@!@#$", fakeJmsBroker.getPassword());
+       assertEquals("Burgundy", fakeJmsBroker.getPassword());
     }
 
 }
